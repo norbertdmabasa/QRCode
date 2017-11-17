@@ -15,6 +15,7 @@
         </activity>
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".ScanActivity" />
+        <activity android:name=".qrcode.BarcodeCaptureActivity" />
         <activity android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>

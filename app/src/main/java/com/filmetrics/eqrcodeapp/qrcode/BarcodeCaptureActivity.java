@@ -57,7 +57,7 @@ import java.io.IOException;
  * rear facing camera. During detection overlay graphics are drawn to indicate the position,
  * size, and ID of each barcode.
  */
-public final class BarcodeCaptureActivity extends AppCompatActivity {
+public final class BarcodeCaptureActivity extends AppCompatActivity implements BarcodeGraphicTracker.BarcodeUpdateListener {
     private static final String TAG = "Barcode-reader";
 
     // intent request code to handle updating play services if needed.
@@ -429,8 +429,8 @@ public final class BarcodeCaptureActivity extends AppCompatActivity {
         }
     }
 
-//    @Override
-//    public void onBarcodeDetected(Barcode barcode) {
-//        //do something with barcode data returned
-//    }
+    @Override
+    public void onBarcodeDetected(Barcode barcode) {
+        //do something with barcode data returned
+    }
 }
