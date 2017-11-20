@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.filmetrics.eqrcodeapp.adapters.ProductDetailAdapter;
 import com.filmetrics.eqrcodeapp.qrcode.BarcodeCaptureActivity;
 
 public class SplashActivity extends AppCompatActivity {
@@ -14,7 +15,8 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        Intent intent = new Intent(this, BarcodeCaptureActivity.class);
+//        Intent intent = new Intent(this, BarcodeCaptureActivity.class);
+        Intent intent = new Intent(this, ProductDetailsActivity.class);
         intent.putExtra(BarcodeCaptureActivity.AutoFocus, true);
         intent.putExtra(BarcodeCaptureActivity.UseFlash, false);
 

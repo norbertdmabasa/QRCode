@@ -12,4 +12,13 @@
     <string name="barcode_success">Barcode read successfully</string>
     <string name="barcode_failure">No barcode captured</string>
     <string name="barcode_error">"Error reading barcode: %1$s"</string>
+
+    <!-- Fragment Titles -->
+    <string name="prod_dtls_title">"Promos"</string>
+    <string name="prod_dtls">"Product Details"</string>
+    <string name="other_info">"Other Info"</string>
+    <string name="promo">"Promos"</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
