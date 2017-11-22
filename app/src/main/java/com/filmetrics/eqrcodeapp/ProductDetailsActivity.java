@@ -32,9 +32,10 @@ public class ProductDetailsActivity extends AppCompatActivity implements TabLayo
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.addOnTabSelectedListener(this);
         toolbar.setTitle(getTitles()[0]);
-        tabLayout.getTabAt(0).setText(getTitles()[0]);
-        tabLayout.getTabAt(1).setText(getTitles()[1]);
-        tabLayout.getTabAt(2).setText(getTitles()[2]);
+
+        for(int cntr = 0;cntr < getTitles().length; cntr++) {
+            setTabTitle(cntr);
+        }
     }
 
     // This method will call Adapter for ViewPager
@@ -65,5 +66,9 @@ public class ProductDetailsActivity extends AppCompatActivity implements TabLayo
     private String[] getTitles() {
         String[] FRAGMENT_NAME = {getString(R.string.prod_dtls), getString(R.string.other_info), getString(R.string.promo)};
         return FRAGMENT_NAME;
+    }
+
+    private void setTabTitle(int index) {
+        tabLayout.getTabAt(index).setText(getTitles()[index]);
     }
 }
