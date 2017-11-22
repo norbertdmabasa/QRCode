@@ -21,14 +21,14 @@ public class ProductDetailsActivity extends AppCompatActivity implements TabLayo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.prod_dtls_title));
         setSupportActionBar(toolbar);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.addOnTabSelectedListener(this);
         toolbar.setTitle(getTitles()[0]);

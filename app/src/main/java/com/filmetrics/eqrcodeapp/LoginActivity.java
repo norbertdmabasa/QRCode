@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.koushikdutta.ion.Ion;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText usernameTxt;
@@ -15,23 +18,31 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private TextView forgotTxt;
     private TextView guestTxt;
     private Button loginBtn;
+    private ImageView loadingImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        usernameTxt = (EditText) findViewById(R.id.username_txt_log);
-        passwordTxt = (EditText) findViewById(R.id.password_txt_log);
+        usernameTxt = findViewById(R.id.username_txt_log);
+        passwordTxt = findViewById(R.id.password_txt_log);
 
-        registerHereTxt = (TextView) findViewById(R.id.registerhere_txt);
-        forgotTxt = (TextView) findViewById(R.id.forgotpass_txt_log);
-        guestTxt = (TextView) findViewById(R.id.guest_txt_log);
+        registerHereTxt = findViewById(R.id.registerhere_txt);
+        forgotTxt = findViewById(R.id.forgotpass_txt_log);
+//        guestTxt = findViewById(R.id.guest_txt_log);
         registerHereTxt.setOnClickListener(this);
         forgotTxt.setOnClickListener(this);
-        guestTxt.setOnClickListener(this);
-        loginBtn = (Button) findViewById(R.id.login_btn);
+//        guestTxt.setOnClickListener(this);
+
+        loginBtn = findViewById(R.id.login_btn);
         loginBtn.setOnClickListener(this);
+
+        loadingImg = findViewById(R.id.loading_img_log);
+
+        Ion.with(loadingImg)
+                .centerCrop()
+                .load("android.resource://" + getPackageName() + "/" + R.drawable.loading);
     }
 
     @Override
@@ -46,16 +57,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.forgotpass_txt_log:
                 onForgotPass();
                 return;
-            case R.id.guest_txt_log:
-                onGuest();
-                return;
+//            case R.id.guest_txt_log:
+//                onGuest();
+//                return;
             default:
                 return;
         }
     }
 
     private void onLogin() {
-        Intent intent = new Intent(this, RegistrationActivity.class);
+        loadingImg.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 

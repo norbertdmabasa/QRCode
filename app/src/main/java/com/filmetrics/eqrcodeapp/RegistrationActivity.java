@@ -22,13 +22,13 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        usernameEdt = (EditText) findViewById(R.id.username_txt_reg);
+//        usernameEdt = (EditText) findViewById(R.id.username_txt_reg);
         passwordEdt = (EditText) findViewById(R.id.password_txt_reg);
         repasswordEdt = (EditText) findViewById(R.id.repassword_txt_reg);
         emailAddEdt = (EditText) findViewById(R.id.email_txt_reg);
-        firstnameEdt = (EditText) findViewById(R.id.firstname_txt_reg);
-        middlenameEdt = (EditText) findViewById(R.id.middlename_txt_reg);
-        lastnameEdt = (EditText) findViewById(R.id.lastname_txt_reg);
+//        firstnameEdt = (EditText) findViewById(R.id.firstname_txt_reg);
+//        middlenameEdt = (EditText) findViewById(R.id.middlename_txt_reg);
+//        lastnameEdt = (EditText) findViewById(R.id.lastname_txt_reg);
 
         registerBtn = (Button) findViewById(R.id.register_btn);
         registerBtn.setOnClickListener(this);

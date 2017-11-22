@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".ScanActivity" />
         <activity android:name=".qrcode.BarcodeCaptureActivity" />
@@ -24,8 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProductDetailsActivity"
-            android:theme="@style/FCMaterialTheme"></activity>
+        <activity
+            android:name=".ProductDetailsActivity"
+            android:theme="@style/FCMaterialTheme" />
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
