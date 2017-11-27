@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.login_btn:
-                onLogin();
+                onClickLoginBtn();
                 return;
             case R.id.registerhere_txt:
                 onRegHere();
@@ -65,9 +65,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void onLogin() {
+    private void onClickLoginBtn() {
         loadingImg.setVisibility(View.VISIBLE);
+
+        String user = usernameTxt.getText().toString();
+        String pass = passwordTxt.getText().toString();
+
+        if(Util.isEmpty(usernameTxt)) {
+
+        } else if(Util.isEmpty(passwordTxt)) {
+
+        } else {
+            doLogin();
+        }
+    }
+
+    private void doLogin() {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("User" , "");
         startActivity(intent);
     }
 
