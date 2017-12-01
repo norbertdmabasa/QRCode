@@ -19,6 +19,15 @@
     <string name="other_info">"Other Info"</string>
     <string name="promo">"Promos"</string>
 
+    <!---->
+    <string name="emailadd">Email Address</string>
+
+    <!-- Forgot Password Activity -->
+    <string name="resetlbl">RESET YOUR PASSWORD</string>
+    <string name="resetinstructlbl">Enter the email address of your\n account to reset your password</string>
+    <string name="resetbtn">RESET PASSWORD</string>
+    <string name="returnlogbtn">RETURN TO LOG-IN</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
