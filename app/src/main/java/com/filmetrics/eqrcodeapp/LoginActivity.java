@@ -9,9 +9,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.filmetrics.eqrcodeapp.webservice.WebServiceInterface;
 import com.koushikdutta.ion.Ion;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, WebServiceInterface{
     private EditText usernameTxt;
     private EditText passwordTxt;
     private TextView registerHereTxt;
@@ -99,5 +100,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void onGuest() {
         Intent intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onRequestStart() {
+
+    }
+
+    @Override
+    public void onPostExecute(Object o) {
+
     }
 }

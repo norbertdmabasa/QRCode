@@ -27,7 +27,8 @@
         <activity
             android:name=".ProductDetailsActivity"
             android:theme="@style/FCMaterialTheme" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ForgotActivity"></activity>
     </application>
 
 </manifest>
