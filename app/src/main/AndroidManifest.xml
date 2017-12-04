@@ -13,7 +13,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegistrationActivity" />
-        <activity android:name=".ScanActivity" />
+        <activity android:name=".ScanActivity"
+            android:theme="@style/AppTheme"/>
         <activity android:name=".qrcode.BarcodeCaptureActivity" />
         <activity
             android:name=".SplashActivity"
@@ -28,7 +29,10 @@
             android:name=".ProductDetailsActivity"
             android:theme="@style/FCMaterialTheme" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".ForgotActivity"></activity>
+        <activity android:name=".ForgotActivity" />
+        <activity
+            android:name=".Base2Activity"
+            android:label="@string/title_activity_base2"></activity>
     </application>
 
 </manifest>

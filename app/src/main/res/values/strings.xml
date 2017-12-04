@@ -28,6 +28,17 @@
     <string name="resetbtn">RESET PASSWORD</string>
     <string name="returnlogbtn">RETURN TO LOG-IN</string>
 
+    <!--Scan Activity -->
+    <string name="nandplbl">NEWS AND \nPROMOS</string>
+    <string name="contactlbl">CONTACT US</string>
+    <string name="helplbl">HELP</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_base2">Base2Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
