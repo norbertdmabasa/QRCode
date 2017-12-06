@@ -5,13 +5,17 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.filmetrics.eqrcodeapp.adapters.ProductDetailAdapter;
 import com.filmetrics.eqrcodeapp.fragments.DetailsFragment;
 import com.filmetrics.eqrcodeapp.fragments.OtherInfoFragment;
 import com.filmetrics.eqrcodeapp.fragments.PromosFragment;
 
-public class ProductDetailsActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+public class ProductDetailsActivity extends BaseActivity implements TabLayout.OnTabSelectedListener {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -19,19 +23,24 @@ public class ProductDetailsActivity extends AppCompatActivity implements TabLayo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_details);
+//        setContentView(R.layout.activity_product_details);
+         View view = getLayoutInflater().inflate(R.layout.activity_product_details, frame, true);
 
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.prod_dtls_title));
-        setSupportActionBar(toolbar);
+//        toolbar = findViewById(R.id.toolbar);
+//        toolbar.setTitle(getString(R.string.prod_dtls_title));
+//        setSupportActionBar(toolbar);
+//        viewPager = findViewById(R.id.viewpager);
+        viewPager = view.findViewById(R.id.viewpager);
+//        tabLayout = findViewById(R.id.tabs);
+        tabLayout = view.findViewById(R.id.tabs);
 
-        viewPager = findViewById(R.id.viewpager);
+        Log.e("ProductDetails", "ViewPager null? " + (viewPager == null));
+
         setupViewPager(viewPager);
 
-        tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.addOnTabSelectedListener(this);
-        toolbar.setTitle(getTitles()[0]);
+//        toolbar.setTitle(getTitles()[0]);
 
         for(int cntr = 0;cntr < getTitles().length; cntr++) {
             setTabTitle(cntr);
@@ -50,7 +59,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements TabLayo
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-        toolbar.setTitle(getTitles()[tab.getPosition()]);
+//        toolbar.setTitle(getTitles()[tab.getPosition()]);
         //When Tab is clicked this line set the viewpager to corresponding fragment
         viewPager.setCurrentItem(tab.getPosition());
     }

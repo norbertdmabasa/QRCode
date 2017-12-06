@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.filmetrics.eqrcodeapp.qrcode;
+package com.filmetrics.eqrcodeapp;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -43,6 +43,9 @@ import com.filmetrics.eqrcodeapp.R;
 import com.filmetrics.eqrcodeapp.camera.CameraSource;
 import com.filmetrics.eqrcodeapp.camera.CameraSourcePreview;
 import com.filmetrics.eqrcodeapp.camera.GraphicOverlay;
+import com.filmetrics.eqrcodeapp.qrcode.BarcodeGraphic;
+import com.filmetrics.eqrcodeapp.qrcode.BarcodeGraphicTracker;
+import com.filmetrics.eqrcodeapp.qrcode.BarcodeTrackerFactory;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.CommonStatusCodes;
