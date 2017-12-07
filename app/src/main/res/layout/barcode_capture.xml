@@ -1,113 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="fill_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 android:keepScreenOn="true"
 android:id="@+id/topLayout">
 
-<com.filmetrics.eqrcodeapp.camera.CameraSourcePreview
-    android:id="@+id/preview"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <com.filmetrics.eqrcodeapp.camera.CameraSourcePreview
+        android:id="@+id/preview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.375">
 
-    <com.filmetrics.eqrcodeapp.camera.GraphicOverlay
-        android:id="@+id/graphicOverlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <com.filmetrics.eqrcodeapp.camera.GraphicOverlay
+            android:id="@+id/graphicOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-</com.filmetrics.eqrcodeapp.camera.CameraSourcePreview>
+    </com.filmetrics.eqrcodeapp.camera.CameraSourcePreview>
 
-<ImageView
-    android:layout_width="2dp"
-    android:layout_height="fill_parent"
-    android:id="@+id/imageView2"
-    android:visibility="gone"
-    android:layout_alignParentTop="true"
-    android:layout_alignLeft="@+id/linearLayout11"
-    android:layout_alignStart="@+id/linearLayout11"
-    android:layout_marginLeft="30dp"
-    android:layout_marginStart="30dp"
-    android:src="#050505"
-    android:layout_above="@+id/linearLayout11" />
+    <LinearLayout
+        android:id="@+id/linearLayout12"
+        android:layout_width="383dp"
+        android:layout_height="182dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/colorAccent"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0">
 
-<ImageView
-    android:layout_width="2dp"
-    android:layout_height="fill_parent"
-    android:id="@+id/imageView3"
-    android:src="#050505"
-    android:visibility="gone"
-    android:layout_alignParentTop="true"
-    android:layout_alignRight="@+id/linearLayout11"
-    android:layout_alignEnd="@+id/linearLayout11"
-    android:layout_marginRight="30dp"
-    android:layout_marginEnd="30dp"
-    android:layout_above="@+id/linearLayout11"/>
+        <Button
+            android:id="@+id/Button01"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/Button2"
+            android:layout_alignBottom="@+id/Button2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:width="70dp"
+            android:onClick="onCaptureClick"
+            android:text="Snap" />
 
-<ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/imageView7"
-    android:layout_alignBottom="@+id/imageView4" />
+        <Button
+            android:id="@+id/Button2"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:onClick="onCaptureClick"
+            android:text="Cancel" />
+    </LinearLayout>
 
-<ImageView
-    android:layout_width="fill_parent"
-    android:layout_height="2dp"
-    android:id="@+id/imageView4"
-    android:src="#050505"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_marginTop="147dp" />
+    <LinearLayout
+        android:id="@+id/linearLayout11"
+        android:layout_width="385dp"
+        android:layout_height="149dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/colorAccent"
+        android:orientation="horizontal"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-<ImageView
-    android:layout_width="fill_parent"
-    android:layout_height="2dp"
-    android:id="@+id/imageView5"
-    android:visibility="gone"
-    android:src="#050505"
-    android:layout_alignBottom="@+id/imageView4"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_marginBottom="80dp" />
+    </LinearLayout>
 
-<ImageView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/imageView6"
-    android:src="#050505"
-    android:layout_alignParentBottom="true"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true" />
-
-<LinearLayout
-    android:orientation="horizontal"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/linearLayout11"
-    android:layout_alignBottom="@+id/imageView6"
-    android:layout_centerHorizontal="true">
-
-    <Button
-        android:id="@+id/Button01"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:onClick="onCaptureClick"
-        android:text="Snap"
-        android:width="70dp"
-        android:layout_alignBaseline="@+id/Button2"
-        android:layout_alignBottom="@+id/Button2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:id="@+id/Button2"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:onClick="onCaptureClick"
-        android:text="Cancel"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-</LinearLayout>
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
