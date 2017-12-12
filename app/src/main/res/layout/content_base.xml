@@ -21,11 +21,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginBottom="117dp"
+        android:layout_marginBottom="102dp"
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp">
+        android:layout_marginEnd="16dp"
+        app:layout_constraintHorizontal_bias="0.0">
 
         <Button
             android:id="@+id/button3"
@@ -77,17 +78,17 @@
 
     <FrameLayout
         android:id="@+id/frame"
-        android:layout_width="0dp"
-        android:layout_height="283dp"
+        android:layout_width="match_parent"
+        android:layout_height="325dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="0dp"
         app:layout_constraintBottom_toTopOf="@+id/buttons_bottom_layout"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"

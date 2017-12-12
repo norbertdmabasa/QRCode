@@ -47,6 +47,11 @@ public class ProductDetailsActivity extends BaseActivity implements TabLayout.On
         }
     }
 
+    @Override
+    public void onClick(View view) {
+
+    }
+
     // This method will call Adapter for ViewPager
     private void setupViewPager(ViewPager viewPager) {
         ProductDetailAdapter adapter = new ProductDetailAdapter(getSupportFragmentManager());

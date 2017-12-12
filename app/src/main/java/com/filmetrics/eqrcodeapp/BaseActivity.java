@@ -14,8 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-public class BaseActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public abstract  class BaseActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     FrameLayout frame;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,4 +91,7 @@ public class BaseActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    @Override
+    public abstract void onClick(View view);
 }

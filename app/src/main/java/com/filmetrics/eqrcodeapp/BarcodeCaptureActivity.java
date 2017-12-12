@@ -29,6 +29,7 @@ import android.hardware.Camera;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +38,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.filmetrics.eqrcodeapp.R;
@@ -81,17 +83,25 @@ public final class BarcodeCaptureActivity extends BaseActivity implements Barcod
     // helper objects for detecting taps and pinches.
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
+    private View view;
 
+    private Button scanqrBtn;
+    private ConstraintLayout scanStrtLayout;
     /**
      * Initializes the UI and creates the detector pipeline.
      */
     @Override
-    public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
-        setContentView(R.layout.barcode_capture);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        view = getLayoutInflater().inflate(R.layout.barcode_capture, frame, true);
 
-        mPreview = (CameraSourcePreview) findViewById(R.id.preview);
-        mGraphicOverlay = (GraphicOverlay<BarcodeGraphic>) findViewById(R.id.graphicOverlay);
+        mPreview = (CameraSourcePreview) view.findViewById(R.id.preview);
+        mGraphicOverlay = (GraphicOverlay<BarcodeGraphic>) view.findViewById(R.id.graphicOverlay);
+
+        scanStrtLayout = (ConstraintLayout) view.findViewById(R.id.linearLayout12);
+
+        scanqrBtn = (Button) view.findViewById(R.id.scanqr_btn);
+        scanqrBtn.setOnClickListener(this);
 
         // read parameters from the intent used to launch the activity.
         boolean autoFocus = getIntent().getBooleanExtra(AutoFocus, false);
@@ -112,6 +122,21 @@ public final class BarcodeCaptureActivity extends BaseActivity implements Barcod
         Snackbar.make(mGraphicOverlay, "Tap to capture. Pinch/Stretch to zoom",
                 Snackbar.LENGTH_LONG)
                 .show();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.scanqr_btn:
+                onScanBtnClicked();
+                return;
+            default:
+                return;
+        }
+    }
+
+    public void onScanBtnClicked() {
+        scanStrtLayout.setVisibility(View.GONE);
     }
 
     /**
@@ -140,7 +165,7 @@ public final class BarcodeCaptureActivity extends BaseActivity implements Barcod
             }
         };
 
-        findViewById(R.id.topLayout).setOnClickListener(listener);
+        view.findViewById(R.id.topLayout).setOnClickListener(listener);
         Snackbar.make(mGraphicOverlay, R.string.permission_camera_rationale,
                 Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.ok, listener)
