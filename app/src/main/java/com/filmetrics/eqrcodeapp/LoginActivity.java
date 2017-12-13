@@ -1,6 +1,7 @@
 package com.filmetrics.eqrcodeapp;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button loginBtn;
     private ImageView loadingImg;
 
+    private TextInputLayout emailtxtLayout;
+    private TextInputLayout passtxtLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +32,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         usernameTxt = findViewById(R.id.username_txt_log);
         passwordTxt = findViewById(R.id.password_txt_log);
+
+        emailtxtLayout = findViewById(R.id.username_txt_layout);
+        passtxtLayout = findViewById(R.id.password_txt_layout);
+
+        emailtxtLayout.setHintAnimationEnabled(false);
+        passtxtLayout.setHintAnimationEnabled(false);
 
         registerHereTxt = findViewById(R.id.registerhere_txt);
         forgotTxt = findViewById(R.id.forgotpass_txt_log);
@@ -71,10 +81,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         String user = usernameTxt.getText().toString();
         String pass = passwordTxt.getText().toString();
+        boolean userEmpty = Util.isEmpty(usernameTxt);
+        boolean passEmpty = Util.isEmpty(passwordTxt);
+        if(userEmpty) {
+            emailtxtLayout.setError(" ");
+        }
 
-        if(Util.isEmpty(usernameTxt)) {
+        if(passEmpty) {
+            passtxtLayout.setError(" ");
+        }
 
-        } else if(Util.isEmpty(passwordTxt)) {
+        if(userEmpty || userEmpty) {
+
+        } else if(android.util.Patterns.EMAIL_ADDRESS.matcher(user).matches()) {
 
         } else {
             doLogin();

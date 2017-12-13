@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "955002525457",
+    "project_id": "firebase-eqrcode"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955002525457:android:6ec217620fe9981f",
+        "android_client_info": {
+          "package_name": "com.filmetrics.eqrcodeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955002525457-49j7cdj9837djbnalg1vesi46cenuofo.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "955002525457-jt06cd9ircur2cu5p9nc245hc45qnhb5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.filmetrics.eqrcodeapp",
+            "certificate_hash": "510dc78e503df77ed3af72dcae0d3c8783a7522b"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6F71JdAmKjn6kXWrgSATa6Q1wYUzl8PI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
