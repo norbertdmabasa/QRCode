@@ -6,39 +6,25 @@
     android:layout_height="match_parent"
     tools:context="com.filmetrics.eqrcodeapp.LoginActivity">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/username_txt_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <EditText
+        android:id="@+id/username_txt_log"
+        android:layout_width="215dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        app:errorEnabled="true"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/edittextbox"
+        android:ellipsize="start"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Email Address"
+        android:inputType="textWebEmailAddress"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/loading_img_log">
-
-        <EditText
-            android:id="@+id/username_txt_log"
-            android:layout_width="215dp"
-            android:layout_height="45dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/edittextbox"
-            android:ellipsize="start"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Email Address"
-            android:inputType="textWebEmailAddress"
-            app:layout_constraintHorizontal_bias="0.503"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username_txt_layout" />
-    </android.support.design.widget.TextInputLayout>
+        android:layout_marginTop="42dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
     <Button
         android:id="@+id/login_btn"
@@ -52,8 +38,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/buttonbox"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/password_txt_layout" />
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/password_txt_log" />
 
     <TextView
         android:id="@+id/registerhere_txt"
@@ -125,38 +111,24 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/password_txt_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <EditText
+        android:id="@+id/password_txt_log"
+        android:layout_width="215dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="62dp"
-        app:errorEnabled="true"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/edittextbox"
+        android:ellipsize="start"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Password"
+        android:inputType="textPassword"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loading_img_log">
-
-        <EditText
-            android:id="@+id/password_txt_log"
-            android:layout_width="215dp"
-            android:layout_height="45dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/edittextbox"
-            android:ellipsize="start"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Password"
-            android:inputType="textPassword"
-            app:layout_constraintHorizontal_bias="0.503"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username_txt_layout" />
-    </android.support.design.widget.TextInputLayout>
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/username_txt_log" />
 
 </android.support.constraint.ConstraintLayout>

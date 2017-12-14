@@ -112,12 +112,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void onForgotPass() {
-        Intent intent = new Intent(this, RegistrationActivity.class);
+        Intent intent = new Intent(this, ForgotActivity.class);
         startActivity(intent);
     }
 
     private void onGuest() {
-        Intent intent = new Intent(this, RegistrationActivity.class);
+        Intent intent = new Intent(this, ProductDetailsActivity.class);
         startActivity(intent);
     }
 
