@@ -16,7 +16,7 @@
         <activity
             android:name=".ScanActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".qrcode.BarcodeCaptureActivity" />
+        <activity android:name=".BarcodeCaptureActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">

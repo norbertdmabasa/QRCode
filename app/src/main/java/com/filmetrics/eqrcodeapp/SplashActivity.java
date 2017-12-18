@@ -4,9 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.filmetrics.eqrcodeapp.adapters.ProductDetailAdapter;
-import com.filmetrics.eqrcodeapp.qrcode.BarcodeCaptureActivity;
-
 public class SplashActivity extends AppCompatActivity {
     private static final int RC_BARCODE_CAPTURE = 9001;
 
