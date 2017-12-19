@@ -35,7 +35,11 @@
             android:name=".Base2Activity"
             android:label="@string/title_activity_base2" />
         <activity android:name=".AboutUsActivity" />
-        <activity android:name=".UserProfileActivity"></activity>
+        <activity android:name=".UserProfileActivity" />
+        <activity
+            android:name=".BaseNavigationActivity"
+            android:label="@string/title_activity_base_navigation"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
