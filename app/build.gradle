@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    compileSdkVersion 27
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.filmetrics.eqrcodeapp"
         minSdkVersion 19
@@ -20,23 +20,28 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
     //Lazy Loader
-    compile 'com.koushikdutta.ion:ion:2.+'
+    implementation 'com.koushikdutta.ion:ion:2.+'
 
 //    //Spring Webservice
 //    compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
 //    compile 'com.fasterxml.jackson.core:jackson-databind:2.3.2'
 
-    compile 'com.google.android.gms:play-services-vision:11.0.4'
-    compile 'com.google.android.gms:play-services-auth:11.0.4'
-    compile 'android.arch.lifecycle:extensions:1.0.0'
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:design:26.+'
-    testCompile 'junit:junit:4.12'
+    implementation 'com.google.android.gms:play-services-vision:11.6.0'
+    implementation 'android.arch.lifecycle:extensions:1.0.0'
+    implementation 'com.android.support:appcompat-v7:27.0.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:design:27.0.1'
+    implementation 'com.google.android.gms:play-services-auth:11.6.0'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.facebook.android:facebook-login:[4,5)'
+
+
 }
+
+apply plugin: 'com.google.gms.google-services'

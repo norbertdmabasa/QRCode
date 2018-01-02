@@ -12,7 +12,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        Intent intent = new Intent(this, BarcodeCaptureActivity.class);
+        Intent intent = new Intent(this, RegistrationActivity.class);
 //        Intent intent = new Intent(this, LoginActivity.class);
 //        Intent intent = new Intent(this, BaseNavigationActivity.class);
         intent.putExtra(BarcodeCaptureActivity.AutoFocus, true);

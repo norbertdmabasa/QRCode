@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">EQRCodeApp</string>
+    <string name="facebook_app_id">778864862313306</string>
+    <string name="fb_login_protocol_scheme">fb778864862313306</string>
     <string name="ok">OK</string>
     <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
     <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
