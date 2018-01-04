@@ -12,10 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.filmetrics.eqrcodeapp.utils.Util;
-import com.filmetrics.eqrcodeapp.webservice.WebServiceInterface;
+import com.filmetrics.eqrcodeapp.webservice.HttpRequestTask;
+import com.filmetrics.eqrcodeapp.webservice.ServiceCallInterface;
 import com.koushikdutta.ion.Ion;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener, WebServiceInterface{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, ServiceCallInterface {
     private EditText usernameTxt;
     private EditText passwordTxt;
     private TextView registerHereTxt;
@@ -111,6 +112,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void doLogin() {
+
+//        String params = Util.webApiParam("username", emailadd, "&");
+//        params += Util.webApiParam("password", passwordS, "&");
+//        params += Util.webApiParam("mobile_name", model, "&");
+//        params += Util.webApiParam("mobile_brand", brand, "&");
+//        params += Util.webApiParam("levelid", "3", "&");
+//        params += Util.webApiParam("macaddress", macadd, "");
+//        String url = "Login?" + params;
+//        HttpRequestTask requestTask = new HttpRequestTask(this, url);
+//
+//        requestTask.execute();
+
         Intent intent = new Intent(this, BarcodeCaptureActivity.class);
         intent.putExtra(BarcodeCaptureActivity.AutoFocus, true);
         intent.putExtra(BarcodeCaptureActivity.UseFlash, false);
@@ -135,12 +148,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
-    public void onRequestStart() {
+    public void onPreExecute() {
 
     }
 
     @Override
-    public void onPostExecute(Object o) {
+    public void onPostExecute(String result) {
+
+    }
+
+    @Override
+    public void onCancelled() {
 
     }
 }
