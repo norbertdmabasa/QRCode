@@ -2,15 +2,11 @@ package com.filmetrics.eqrcodeapp;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
-import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -27,6 +24,7 @@ import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.filmetrics.eqrcodeapp.utils.DialogUtil;
 import com.filmetrics.eqrcodeapp.utils.Util;
 import com.filmetrics.eqrcodeapp.webservice.HttpRequestTask;
 import com.filmetrics.eqrcodeapp.webservice.ServiceCallInterface;
@@ -39,14 +37,22 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import com.facebook.FacebookSdk;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener, ServiceCallInterface {
+    private static final String TAG = "RegistrationActivity";
     private Button registerBtn;
-    private ImageView gsign;
+//    private ImageView gsign;
     private LoginButton fsign;
     private SignInButton signInButton;
 
@@ -62,32 +68,36 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     private EditText email, password, repassword;
     private String[] res;
+    private RegistrationActivity context;
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        FacebookSdk.sdkInitialize(this);
+        context = this;
+        FacebookSdk.sdkInitialize(context);
+        mAuth = FirebaseAuth.getInstance();
 
         email = (EditText) findViewById(R.id.email_txt_reg);
         password = (EditText) findViewById(R.id.password_txt_reg);
-        repassword = (EditText) findViewById(R.id.repassword_txt_reg);
+//        repassword = (EditText) findViewById(R.id.repassword_txt_reg);
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs = PreferenceManager.getDefaultSharedPreferences(context);
         ed = prefs.edit();
         res = Util.getPDetails(getApplicationContext());
         registerBtn = (Button) findViewById(R.id.register_btn);
-        registerBtn.setOnClickListener(this);
+        registerBtn.setOnClickListener(context);
 
         signInButton = (SignInButton) findViewById(R.id.signInButton);
         fsign = (LoginButton) findViewById(R.id.fsign_btn);
 
-        signInButton.setOnClickListener(this);
-        fsign.setOnClickListener(this);
-
+        fsign.setOnClickListener(context);
+        signInButton.setOnClickListener(context);
         callbackManager = CallbackManager.Factory.create();
 
-        progressDialog = new ProgressDialog(this);
+        progressDialog = new ProgressDialog(context);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
 
@@ -112,8 +122,21 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
-        GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build();
-        googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this).addApi(Auth.GOOGLE_SIGN_IN_API, signInOptions).build();
+//        GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build();
+        GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        googleApiClient = new GoogleApiClient.Builder(context).enableAutoManage(context, context).addApi(Auth.GOOGLE_SIGN_IN_API, signInOptions).build();
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        updateUI(currentUser);
     }
 
     @Override
@@ -122,9 +145,9 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             case R.id.register_btn:
                 boolean userEmpty = Util.isEmpty(email.getText().toString());
                 boolean passEmpty = Util.isEmpty(password.getText().toString());
-                boolean rpassEmpty = Util.isEmpty(repassword.getText().toString());
+//                boolean rpassEmpty = Util.isEmpty(repassword.getText().toString());
                 boolean connection = Util.checkConnect(getApplicationContext());
-                Log.e("RegistrationActivity", (userEmpty || passEmpty || rpassEmpty) + "");
+                Log.e("RegistrationActivity", (userEmpty || passEmpty) + "");
 //                if(connection || userEmpty || passEmpty || rpassEmpty) {
 //                    if(userEmpty && passEmpty && rpassEmpty) {
 //
@@ -154,7 +177,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 //                } else {
                     String emailadd = email.getText().toString();
                     String passwordS = password.getText().toString();
-                    String repasswordS = repassword.getText().toString();
+//                    String repasswordS = repassword.getText().toString();
                     String params = "";
                     params = Util.webApiParam("username", emailadd, "&");
                     params += Util.webApiParam("password", passwordS, "&");
@@ -165,10 +188,16 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                     String url = "";
                     url = "Register?" + params;
                     Log.e("Register", url);
-                    HttpRequestTask requestTask = new HttpRequestTask(this, url, progressDialog, registerBtn);
+                    HttpRequestTask requestTask = new HttpRequestTask(context, url, registerBtn);
                     requestTask.execute();
 //                }
+                break;
 
+            case R.id.signInButton:
+                Toast.makeText(this, "GSIGN", Toast.LENGTH_SHORT).show();
+                onGsign();
+                break;
+            default:
                 break;
         }
     }
@@ -183,21 +212,43 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         startActivityForResult(intent, GSIGN);
     }
 
-    private void handleGsign(GoogleSignInResult result) {
-        if(result.isSuccess()) {
-            GoogleSignInAccount account = result.getSignInAccount();
-            String name = account.getDisplayName();
-            String email = account.getEmail();
-            String image = account.getPhotoUrl().toString();
+    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
-            ed.putString(getString(R.string.firstname), account.getGivenName());
-            ed.putString(getString(R.string.lastname), account.getFamilyName());
-            ed.putString(getString(R.string.photo), account.getPhotoUrl().toString());
-            ed.putString(getString(R.string.email), account.getEmail());
-            ed.commit();
-        } else {
+        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithCredential:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            handleGsign(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+//                            Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
+//                            updateUI(null);
+                        }
 
-        }
+                        // ...
+                    }
+                });
+    }
+
+    private void handleGsign(FirebaseUser result) {
+        String name = result.getDisplayName();
+        String email = result.getEmail();
+        String image = result.getPhotoUrl().toString();
+
+        ed.putString(getString(R.string.firstname), name);
+        ed.putString(getString(R.string.photo), image);
+        ed.putString(getString(R.string.email), email);
+        ed.commit();
+
+        Intent intent = new Intent(getApplicationContext(), BarcodeCaptureActivity.class);
+        startActivity(intent);
     }
 
     private boolean checkEmpty(EditText input) {
@@ -232,13 +283,9 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         Log.e(RegistrationActivity.class.getName(), "" + requestCode + " resultCode" + resultCode);
         if(requestCode == GSIGN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleGsign(result);
-            Intent intent = new Intent(getApplicationContext(), BarcodeCaptureActivity.class);
-            startActivity(intent);
+            firebaseAuthWithGoogle(result.getSignInAccount());
         } else if(requestCode == FSIGN) {
             callbackManager.onActivityResult(requestCode, resultCode, data);
-
-
         } else {
 
         }
@@ -306,26 +353,29 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         result = result.substring(1, result.length()-1);
         Log.e("Register", result);
         try {
-
             JSONObject jsonObject = new JSONObject(result + "");;
             Log.e("Register", jsonObject.getString("message"));
 
             if(result.contains("Authentication failed.")) {
                 dismissDialog();
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Registration");
-
-                builder.setMessage("Unauthorized Email!");
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-                AlertDialog alert = builder.create();
-                alert.show();
-            } else {
+                DialogUtil.alertOkDialog(context, "An error occured in registration.", "Registration").show();
+            } else if(result.contains("Phone is already registered.")) {
                 dismissDialog();
+                DialogUtil.alertOkDialog(context, "Phone already registered.", "Registration").show();
+            } else if(jsonObject.getString("message").equals("ok")) {
+                ed.putString(getString(R.string.id), jsonObject.getString("id"));
+                ed.putString(getString(R.string.firstname), jsonObject.getString("firstname"));
+                ed.putString(getString(R.string.middlename), jsonObject.getString("middlename"));
+                ed.putString(getString(R.string.lastname), jsonObject.getString("lastname"));
+                ed.putString(getString(R.string.suffix), jsonObject.getString("suffix"));
+                ed.putString(getString(R.string.contact), jsonObject.getString("contact"));
+                ed.putString(getString(R.string.gender), jsonObject.getString("gender"));
+                ed.putString(getString(R.string.empnumber), jsonObject.getString("empnumber"));
+                ed.putString(getString(R.string.jobtitle), jsonObject.getString("jobtitle"));
+
+                ed.commit();
+                dismissDialog();
+                Toast.makeText(context, "Registration Successful!", Toast.LENGTH_SHORT).show();
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -334,6 +384,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onCancelled() {
-
+        dismissDialog();
     }
 }

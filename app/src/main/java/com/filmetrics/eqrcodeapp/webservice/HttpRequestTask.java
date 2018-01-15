@@ -14,15 +14,13 @@ import org.json.JSONObject;
  * Created by nmabasa on 5/17/2016.
  */
 public class HttpRequestTask extends AsyncTask<String, String, String> {
-    private final ProgressDialog progressDialog;
     private final Button registerBtn;
     private String urls = "http://192.168.21.106:9001/api/MainApi/";
     private ServiceCallInterface serviceCall;
 
-    public HttpRequestTask(ServiceCallInterface serviceCall, String url, ProgressDialog progressDialog, Button registerBtn) {
+    public HttpRequestTask(ServiceCallInterface serviceCall, String url, Button registerBtn) {
         this.serviceCall = serviceCall;
         this.urls += url;
-        this.progressDialog = progressDialog;
         this.registerBtn = registerBtn;
         Log.e("Register URL","" + urls);
     }

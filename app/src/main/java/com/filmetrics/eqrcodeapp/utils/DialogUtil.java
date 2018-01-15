@@ -10,16 +10,31 @@ import android.content.DialogInterface;
  */
 
 public class DialogUtil {
-    public static void AlertDialog(DialogInterface.OnClickListener dialogClickListener, Context context, String msg) {
+    public static void AlertYNDialog(DialogInterface.OnClickListener dialogClickListener, Context context, String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(msg)
                 .setPositiveButton("Yes", dialogClickListener)
                 .setNegativeButton("No", dialogClickListener).show();
     }
 
-    public static void ErrDialog(DialogInterface.OnClickListener dialogClickListener, Context context, String msg) {
+    public static void Dialog(DialogInterface.OnClickListener dialogClickListener, Context context, String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(msg)
                 .setPositiveButton("Ok", dialogClickListener).show();
+    }
+
+    public static android.support.v7.app.AlertDialog alertOkDialog(Context context, String msg, String title) {
+        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+        builder.setTitle(title);
+
+        builder.setMessage(msg);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        android.support.v7.app.AlertDialog alert = builder.create();
+        return alert;
     }
 }
